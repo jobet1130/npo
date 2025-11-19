@@ -23,6 +23,10 @@
         <base target="_blank">
         {% endif %}
 
+        {# Bulma CSS framework #}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/bulma.min.css' %}">
+        {# Font Awesome icons #}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
         {# Global stylesheets #}
         <link rel="stylesheet" type="text/css" href="{% static 'css/npo.css' %}">
 
@@ -35,6 +39,9 @@
         {% wagtailuserbar %}
 
         {% block content %}{% endblock %}
+
+        {# JQuery #}
+        <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
 
         {# Global javascript #}
         <script type="text/javascript" src="{% static 'js/npo.js' %}"></script>
