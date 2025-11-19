@@ -1,0 +1,297 @@
+/*======================================================
+    NPO CSS Stylesheet
+    Bulma-compatible custom styles for NPO project
+    Author: Jobet P. Casquejo
+=======================================================*/
+
+/*---------------------------------
+   1. CSS Variables / Theme
+----------------------------------*/
+:root {
+    /* Colors / Theme */
+    --primary: #2C5F2D;
+    --primary-dark: #244c24;
+    --primary-light: #3a7a3a;
+    --secondary: #F4D35E;
+    --secondary-dark: #d6b84b;
+    --secondary-light: #fff1a8;
+    --accent: #264653;
+    --accent-dark: #1e373f;
+    --accent-light: #3a5c73;
+    --background: #FFFFFF;
+    --background-alt: #F9F9F9;
+    --neutral-light: #E5E5E5;
+    --neutral-dark: #B0B0B0;
+    --neutral-mid: #CCCCCC;
+    --text-color: #1A1A1A;
+    --text-light: #666666;
+    --text-inverse: #FFFFFF;
+    --error-color: #E74C3C;
+    --success-color: #27AE60;
+    --warning-color: #F39C12;
+    --info-color: #3498DB;
+
+    /* Typography */
+    --heading-font: 'Merriweather', serif;
+    --body-font: 'Open Sans', sans-serif;
+    --font-size-base: 16px;
+    --line-height-base: 1.6;
+    --heading-line-height: 1.2;
+    --font-weight-normal: 400;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+
+    /* Spacing */
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 2rem;
+    --space-xl: 3rem;
+    --container-max-width: 1200px;
+
+    /* Borders / Radius */
+    --border-radius-sm: 4px;
+    --border-radius-md: 6px;
+    --border-radius-lg: 8px;
+    --border-radius-round: 50%;
+
+    /* Shadows */
+    --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.12);
+    --shadow-lg: 0 8px 20px rgba(0, 0, 0, 0.15);
+    --shadow-hover: 0 12px 30px rgba(0, 0, 0, 0.2);
+
+    /* Buttons / Transitions */
+    --transition-speed: 0.3s;
+    --transition-ease: ease-in-out;
+
+    /* Z-index / Layers */
+    --z-header: 1000;
+    --z-modal: 1100;
+    --z-tooltip: 1200;
+
+    /* Breakpoints */
+    --breakpoint-xs: 480px;
+    --breakpoint-sm: 768px;
+    --breakpoint-md: 1024px;
+    --breakpoint-lg: 1200px;
+    --breakpoint-xl: 1440px;
+
+    /* Special / Effects */
+    --gradient-primary: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    --gradient-secondary: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
+    --selection-color: var(--primary);
+}
+
+/* --------------------------
+   2. Global Reset / Body
+--------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+    font-family: var(--body-font);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+    color: var(--text-color);
+    background-color: var(--background);
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* --------------------------
+   3. Typography (Fluid & Responsive)
+--------------------------- */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--heading-font);
+    color: var(--accent);
+    margin-top: 0;
+    margin-bottom: var(--space-md);
+    line-height: var(--heading-line-height);
+}
+
+h1 { font-size: clamp(2rem, 5vw, 3rem); }
+h2 { font-size: clamp(1.75rem, 4.5vw, 2.5rem); }
+h3 { font-size: clamp(1.5rem, 4vw, 2rem); }
+h4 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
+h5 { font-size: clamp(1.1rem, 2.5vw, 1.5rem); }
+h6 { font-size: clamp(1rem, 2vw, 1.25rem); }
+
+p { margin-bottom: var(--space-md); max-width: 100%; }
+strong { font-weight: var(--font-weight-semibold); }
+
+/* --------------------------
+   4. Links
+--------------------------- */
+a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color var(--transition-speed) var(--transition-ease);
+}
+
+a:hover, a:focus { color: var(--primary); text-decoration: underline; }
+
+/* --------------------------
+   5. Sections
+--------------------------- */
+.section {
+    padding: clamp(2rem, 5vw, 4rem) var(--space-md);
+    position: relative;
+}
+
+.section.hero {
+    background: var(--gradient-primary);
+    color: var(--text-inverse);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    text-align: center;
+}
+
+.section.cta {
+    background: var(--secondary);
+    color: var(--text-color);
+    text-align: center;
+}
+
+@media (max-width: var(--breakpoint-sm)) {
+    .section.hero { min-height: 40vh; padding: 2rem 1rem; }
+}
+
+/* --------------------------
+   6. Containers
+--------------------------- */
+.container {
+    width: 100%;
+    max-width: var(--container-max-width);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--space-md);
+    padding-right: var(--space-md);
+}
+
+/* --------------------------
+   7. Buttons
+--------------------------- */
+.button {
+    border-radius: var(--border-radius-md);
+    font-weight: var(--font-weight-semibold);
+    padding: 0.75rem 1.5rem;
+    transition: all var(--transition-speed) var(--transition-ease);
+    cursor: pointer;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.button.is-primary {
+    background-color: var(--primary);
+    color: var(--text-inverse);
+}
+.button.is-primary:hover,
+.button.is-primary:focus {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+.button.is-secondary {
+    background-color: var(--secondary);
+    color: var(--text-color);
+}
+.button.is-secondary:hover,
+.button.is-secondary:focus {
+    background-color: var(--secondary-dark);
+    transform: translateY(-2px);
+}
+
+.button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* --------------------------
+   8. Cards
+--------------------------- */
+.card {
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    margin-bottom: var(--space-lg);
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+}
+
+/* --------------------------
+   9. Images
+--------------------------- */
+img { max-width: 100%; height: auto; display: block; border-radius: var(--border-radius-md); }
+.img-shadow { box-shadow: var(--shadow-md); }
+
+/* --------------------------
+   10. Forms
+--------------------------- */
+input, textarea, select {
+    border-radius: var(--border-radius-md);
+    border: 1px solid var(--neutral-light);
+    padding: 0.75rem 1rem;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: var(--body-font);
+    transition: border var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+input:focus, textarea:focus, select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(44, 95, 45, 0.2);
+    outline: none;
+}
+
+.is-error {
+    border-color: var(--error-color);
+    box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.2);
+}
+.error-message { color: var(--error-color); font-size: 0.875rem; margin-top: 0.25rem; }
+
+/* --------------------------
+   11. Utility Classes
+--------------------------- */
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-left { text-align: left; }
+
+.d-flex { display: flex !important; }
+.flex-column { flex-direction: column !important; }
+.flex-row { flex-direction: row !important; }
+.justify-center { justify-content: center !important; }
+.align-center { align-items: center !important; }
+
+.mt-1 { margin-top: var(--space-xs) !important; }
+.mt-2 { margin-top: var(--space-sm) !important; }
+.mt-3 { margin-top: var(--space-md) !important; }
+.mt-4 { margin-top: var(--space-lg) !important; }
+
+.mb-1 { margin-bottom: var(--space-xs) !important; }
+.mb-2 { margin-bottom: var(--space-sm) !important; }
+.mb-3 { margin-bottom: var(--space-md) !important; }
+.mb-4 { margin-bottom: var(--space-lg) !important; }
+
+/* --------------------------
+   12. Accessibility
+--------------------------- */
+:focus {
+    outline: 3px solid var(--primary);
+    outline-offset: 3px;
+}
+
+::selection {
+    background: var(--selection-color);
+    color: var(--text-inverse);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition: none !important; animation: none !important; }
+}
